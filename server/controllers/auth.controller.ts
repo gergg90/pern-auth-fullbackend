@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserModel } from "../models/user.model";
+import { UserModelPrisma } from "../models/user.model";
 import { validateUser } from "../schemas/userSchema";
 
 export class AuthController {
@@ -12,7 +12,7 @@ export class AuthController {
         .json({ message: JSON.parse(result.error.message) });
     }
 
-    const newUser = await UserModel.createUser(result.data);
+    const newUser = await UserModelPrisma.createUser(result.data);
 
     res.json(newUser);
   };
